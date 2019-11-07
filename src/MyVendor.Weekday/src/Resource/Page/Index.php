@@ -1,14 +1,14 @@
 <?php
 namespace MyVendor\Weekday\Resource\Page;
 
-use BEAR\Resource\Annotation\Embed;
 use BEAR\Resource\ResourceObject;
+use BEAR\Sunday\Inject\ResourceInject;
 
 class Index extends ResourceObject
 {
+    use ResourceInject;
+
     /**
-     * @Embed(rel="weekday", src="app://self/weekday{?year,month,day}")
-     *
      * @param integer $year
      * @param integer $month
      * @param integer $day
@@ -16,10 +16,9 @@ class Index extends ResourceObject
      */
     public function onGet(int $year, int $month, int $day) : ResourceObject
     {
-        $this->body += [
-            'year' => $year,
-            'month' => $month,
-            'day' => $day,
+        $params = get_defined_vars();
+        $this->body = $params + [
+            'weekday' => $this->resource->get('app://self/weekday', $params)
         ];
 
         return $this;
