@@ -1,5 +1,4 @@
 <?php
-
 namespace MyVendor\Weekday\Resource\App;
 
 use BEAR\Package\Annotation\ReturnCreatedResource;
@@ -15,7 +14,7 @@ class Todos extends ResourceObject
 {
     use DatabaseInject;
 
-    public function onGet(int $id): ResourceObject
+    public function onGet(int $id) : ResourceObject
     {
         $this->body = $this
             ->db
@@ -34,13 +33,14 @@ class Todos extends ResourceObject
      * @ReturnCreatedResource
      *
      * @param string $todo
+     *
      * @return ResourceObject
      */
-    public function onPost(string $todo): ResourceObject
+    public function onPost(string $todo) : ResourceObject
     {
         $statement = $this->db->insert(
             'todo',
-            ['todo' => $todo, 'created_at' => new \DateTime('noew')],
+            ['todo' => $todo, 'created_at' => new \DateTime('now')],
             ['created_at' => 'datetime']
         );
 
@@ -54,11 +54,12 @@ class Todos extends ResourceObject
     /**
      * @Transactional
      *
-     * @param integer $id
+     * @param int    $id
      * @param string $todo
+     *
      * @return ResourceObject
      */
-    public function onPut(int $id, string $todo): ResourceObject
+    public function onPut(int $id, string $todo) : ResourceObject
     {
         $this->db->update(
             'todo',
