@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3'
 
 services:
   composer:
@@ -6,7 +6,30 @@ services:
     build:
         context: ./
         dockerfile: ./Dockerfile
+    depends_on:
+      - db
     volumes: 
       - ./src:/app
-    command: composer install
-    # tty: true
+    # command: /bin/bash
+    tty: true
+  db:
+    image: mysql:5.7
+    env_file: .env
+    # ports:
+      # - "3306:3306"
+    volumes:
+      - "./my.cnf:/etc/mysql/conf.d/cyfons.cnf"
+      - "${DOCKER_MYSQL_DATA_DIR}:/var/lib/mysql"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    env_file: .env
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+    ports:
+      - 8033:80
+    volumes:
+      - "phpmyadminSession:/sessions"
+volumes:
+  phpmyadminSession:
