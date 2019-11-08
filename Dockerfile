@@ -6,6 +6,20 @@ RUN set -eux && apk add --no-cache --virtual .build-deps \
         curl \
         libtool \
         libxml2-dev \
+        libzip-dev \
     && apk add --no-cache \
         sqlite \
-    && apk del -f .build-deps 
+        mysql-client \
+        tzdata \
+    && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && echo "Asia/Tokyo" > /etc/timezone \
+    && docker-php-ext-install \
+        mbstring \
+        pdo \
+        pdo_mysql \
+        mysqli \
+        tokenizer \
+        bcmath \
+        opcache \
+        xml \
+        zip \
+    && apk del -f .build-deps
