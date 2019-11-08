@@ -1,5 +1,4 @@
 <?php
-
 namespace MyVendor\Weekday\Annotation;
 
 /**
@@ -7,5 +6,4 @@ namespace MyVendor\Weekday\Annotation;
  */
 final class BenchMark
 {
-
 }

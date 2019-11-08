@@ -1,5 +1,4 @@
 <?php
-
 namespace MyVendor\Weekday\Module;
 
 use Madapaja\TwigModule\TwigErrorPageModule;
@@ -8,9 +7,9 @@ use Ray\Di\AbstractModule;
 
 class HtmlModule extends AbstractModule
 {
-	protected function configure()
-	{
-		$this->install(new TwigModule);
-		$this->install(new TwigErrorPageModule);
-	}
+    protected function configure()
+    {
+        $this->install(new TwigModule);
+        $this->install(new TwigErrorPageModule);
+    }
 }

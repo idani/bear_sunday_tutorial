@@ -4,10 +4,10 @@ namespace MyVendor\Weekday\Module;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
-use MyVendor\Weekday\MyLogger;
-use MyVendor\Weekday\MyLoggerInterface;
 use MyVendor\Weekday\Annotation\BenchMark;
 use MyVendor\Weekday\Interceptor\BenchMarker;
+use MyVendor\Weekday\MyLogger;
+use MyVendor\Weekday\MyLoggerInterface;
 
 class AppModule extends AbstractAppModule
 {

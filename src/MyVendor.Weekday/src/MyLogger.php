@@ -1,5 +1,4 @@
 <?php
-
 namespace MyVendor\Weekday;
 
 use BEAR\AppMeta\AbstractAppMeta;

@@ -1,5 +1,4 @@
 <?php
-
 namespace MyVendor\Weekday\Interceptor;
 
 use MyVendor\Weekday\MyLoggerInterface;
@@ -8,27 +7,26 @@ use Ray\Aop\MethodInvocation;
 
 class BenchMarker implements MethodInterceptor
 {
-	/**
-	 * Undocumented variable
-	 *
-	 * @var MyLoggerInterface
-	 */
-	private $logger;
+    /**
+     * Undocumented variable
+     *
+     * @var MyLoggerInterface
+     */
+    private $logger;
 
-	public function __construct(MyLoggerInterface $logger)
-	{
-		$this->logger = $logger;
-	}
+    public function __construct(MyLoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
+    public function invoke(MethodInvocation $invocation)
+    {
+        $start = microtime(true);
+        $result = $invocation->proceed();
+        $time = microtime(true) - $start;
+        $message = sprintf('%s: %0.5f(μs)', $invocation->getMethod()->getName(), $time);
+        $this->logger->log($message);
 
-	public function invoke(MethodInvocation $invocation)
-	{
-		$start = microtime(true);
-		$result = $invocation->proceed();
-		$time = microtime(true) - $start;
-		$message = sprintf('%s: %0.5f(μs)', $invocation->getMethod()->getName(), $time);
-		$this->logger->log($message);
-
-		return $result;
-	}
+        return $result;
+    }
 }

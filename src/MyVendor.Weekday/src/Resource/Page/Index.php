@@ -9,9 +9,10 @@ class Index extends ResourceObject
     use ResourceInject;
 
     /**
-     * @param integer $year
-     * @param integer $month
-     * @param integer $day
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     *
      * @return ResourceObject
      */
     public function onGet(int $year, int $month, int $day) : ResourceObject
