@@ -7,12 +7,12 @@ return [
         'migrations' => __DIR__ . '/migrations',
     ],
     'environments' => [
-        'developments' => [
-            'name' => $development->query('SELECT DATABASE()')->fetchColumn(),
-            'connetion' => $development
+        'development' => [
+            'name' => $development->query("SELECT DATABASE()")->fetchColumn(),
+            'connection' => $development
         ],
         'test' => [
-            'name' => $test->query('SELECT DATABASE()')->fetchColumn(),
+            'name' => $test->query("SELECT DATABASE()")->fetchColumn(),
             'connection' => $test
         ]
     ]

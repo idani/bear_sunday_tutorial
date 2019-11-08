@@ -6,8 +6,8 @@ use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaLinkHeaderModule;
 use BEAR\Resource\Module\JsonSchemaModule;
-use Ray\AurasqlModule\AuraSqlModule;
-use Ray\IdentiyValueModule\IdentityValuModule;
+use Ray\AuraSqlModule\AuraSqlModule;
+use Ray\IdentityValueModule\IdentityValueModule;
 use Ray\Query\SqlQueryModule;
 
 class AppModule extends AbstractAppModule
@@ -28,7 +28,7 @@ class AppModule extends AbstractAppModule
             )
         );
         $this->install(new SqlQueryModule($appDir . '/var/sql'));
-        $this->install(new IdentityValuModule);
+        $this->install(new IdentityValueModule);
         $this->install(
             new JsonSchemaModule(
                 $appDir . '/var/json_schema',
@@ -36,7 +36,7 @@ class AppModule extends AbstractAppModule
             )
         );
         $this->install(new JsonSchemaLinkHeaderModule('http://www.example.com/'));
-        $this->install(new AuraRouterModule(($appDir . '/var/conf/aura.route.php')));
+        $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
         $this->install(new PackageModule);
     }
 }

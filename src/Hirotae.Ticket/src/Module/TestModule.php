@@ -7,9 +7,7 @@ use Ray\AuraSqlModule\AuraSqlModule;
 class TestModule extends AbstractAppModule
 {
     /**
-     * {@inheritDoc}
-     *
-     * @return void
+     * {@inheritdoc}
      */
     protected function configure()
     {

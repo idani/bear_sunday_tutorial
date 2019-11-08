@@ -1,2 +1,3 @@
 <?php
-$map->route('/ticket', '/ticket/{id}');
+/* @var \Aura\Router\Map $map */
+$map->route('/ticket', '/tickets/{id}');
