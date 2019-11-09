@@ -6,7 +6,8 @@
     "require": {
         "php": ">=7.1.0",
         "bear/package": "^1.9",
-        "bear/ssr-module": "^1.0"
+        "bear/ssr-module": "^1.0",
+        "koriym/js-ui-skeleton": "1.x-dev"
     },
     "require-dev": {
         "bear/qatools": "^1.9",
