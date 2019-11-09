@@ -6,17 +6,24 @@ services:
     build:
         context: ./
         dockerfile: ./Dockerfile
+    ports:
+      # - 80:80
+      - 8080:8080
+      # - "3000:3000"
     depends_on:
       - db
     volumes: 
       - ./src:/app
-    # command: /bin/bash
-    tty: true
+      - ./php.ini:/usr/local/etc/php/php.ini
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    # command: php -S 0.0.0.0:8080 -t /app/Hirotae.JavascriptView/public
+    command: php -S 0.0.0.0:8080 -t /app/Hirotae.JavascriptView/ui/dev
+
   db:
     image: mysql:5.7
     env_file: .env
-    # ports:
-      # - "3306:3306"
+    ports:
+      - "3306:3306"
     volumes:
       - "./my.cnf:/etc/mysql/conf.d/cyfons.cnf"
       - "${DOCKER_MYSQL_DATA_DIR}:/var/lib/mysql"

@@ -11,7 +11,9 @@ RUN set -eux && apk add --no-cache --virtual .build-deps \
         sqlite \
         mysql-client \
         tzdata \
+        nodejs \
     && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && echo "Asia/Tokyo" > /etc/timezone \
+    && pecl install xdebug \
     && docker-php-ext-install \
         mbstring \
         pdo \
@@ -22,4 +24,6 @@ RUN set -eux && apk add --no-cache --virtual .build-deps \
         opcache \
         xml \
         zip \
-    && apk del -f .build-deps
+    && apk del -f .build-deps \
+    && docker-php-ext-enable \
+       xdebug
