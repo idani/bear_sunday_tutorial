@@ -1,0 +1,14 @@
+{
+  "extends": ["airbnb"],
+  "env": {
+    "browser": true,
+    "jasmine": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "ui/webpack.config.js"
+      }
+    }
+  }
+}

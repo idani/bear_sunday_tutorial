@@ -17,3 +17,4 @@
 phpunit.xml
 /docs/api/
 autoload.php
+/node_modules/
