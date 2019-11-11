@@ -12,7 +12,7 @@ class WeekdayTest extends TestCase
      */
     private $resource;
 
-    protected function setUp():void
+    protected function setUp() : void
     {
         $this->resource = (new AppInjector('Hirotae\Weekday', 'app'))->getInstance(ResourceInterface::class);
     }
