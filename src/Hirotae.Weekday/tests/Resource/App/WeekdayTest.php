@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class WeekdayTest extends TestCase
 {
+    /**
+     * @var ResourceInterface
+     */
     private $resource;
 
     protected function setUp()
