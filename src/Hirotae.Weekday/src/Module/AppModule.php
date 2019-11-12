@@ -6,8 +6,9 @@ use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use Hirotae\Weekday\MyLogger;
 use Hirotae\Weekday\MyLoggerInterface;
-use Hirotae\Weekday\Annotation\BenchMark;
-use Hirotae\Weekday\Interceptor\BenchMaker;
+use Hirotae\Weekday\Annotation\BenchMark; // add this line
+use Hirotae\Weekday\Interceptor\BenchMarker; // add this line
+use Ray\WebFormModule\WebFormModule;
 
 class AppModule extends AbstractAppModule
 {
@@ -20,12 +21,16 @@ class AppModule extends AbstractAppModule
         require_once $appDir . '/env.php';
         $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
         $this->bind(MyLoggerInterface::class)->to(MyLogger::class);
-        $this->install(new PackageModule);
 
         $this->bindInterceptor(
             $this->matcher->any(),
             $this->matcher->annotatedWith(BenchMark::class),
-            [BenchMaker::class]
+            [BenchMarker::class]
         );
+
+        $this->install(new AuraInputModule);
+
+        $this->install(new PackageModule);
+
     }
 }

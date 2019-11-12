@@ -5,8 +5,11 @@ use Hirotae\Weekday\MyLoggerInterface;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
 
-class BenchMaker implements MethodInterceptor
+class BenchMarker implements MethodInterceptor
 {
+    /**
+     * @var MyLoggerInterface
+     */
     private $logger;
 
     public function __construct(MyLoggerInterface $logger)
@@ -17,9 +20,9 @@ class BenchMaker implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         $start = microtime(true);
-        $result = $invocation->proceed();
+        $result = $invocation->proceed(); // 元のメソッドの実行
         $time = microtime(true) - $start;
-        $message = sprintf('%s: %0.5f(μs)', $invocation->getMethod()->getName(), $time);
+        $message = sprintf('%s: %0.5f(µs)', $invocation->getMethod()->getName(), $time);
         $this->logger->log($message);
 
         return $result;
